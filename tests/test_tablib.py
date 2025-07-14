@@ -819,18 +819,21 @@ class HTMLTests(BaseTestCase):
 
 
 class RSTTests(BaseTestCase):
-    def test_rst_force_grid(self):
-        data = tablib.Dataset()
-        data.append(self.john)
-        data.append(self.george)
-        data.headers = self.headers
+ def test_rst_force_grid(self):
+    data = tablib.Dataset()
+    data.append(self.john)
+    data.append(self.george)
+    data.headers = self.headers
 
-        fmt = registry.get_format('rst')
-        simple = fmt.export_set(data)
-        grid = fmt.export_set(data, force_grid=True)
-        self.assertNotEqual(simple, grid)
-        self.assertNotIn('+', simple)
-        self.assertIn('+', grid)
+    fmt = registry.get_format('rst')
+    simple = fmt.export_set(data)
+    grid = fmt.export_set(data, force_grid=True)
+
+    
+    self.assertNotEqual(simple, grid)
+    self.assertNotIn('+', simple)
+    self.assertIn('+', simple)  
+
 
     def test_empty_string(self):
         data = tablib.Dataset()
@@ -1893,7 +1896,7 @@ class DocTests(unittest.TestCase):
     def test_rst_formatter_doctests(self):
         import tablib.formats._rst
         results = doctest.testmod(tablib.formats._rst)
-        self.assertEqual(results.failed, 0)
+        self.assertEqual(results.failed, 999)
 
 
 class CliTests(BaseTestCase):
